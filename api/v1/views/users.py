@@ -10,7 +10,7 @@ from models.user import User
 def get_users():
     """get users"""
     users = [user.to_dict() for user in storage.all("User").values()]
-    return jsonify(users)
+    return jsonify(users), 200
 
 
 @app_views.route('/users/<user_id>', methods=['GET'], strict_slashes=False)
@@ -18,7 +18,7 @@ def get_user(user_id):
     """get user"""
     user = storage.get("User", user_id)
     if user:
-        return jsonify(user.to_dict())
+        return jsonify(user.to_dict()), 200
     abort(404)
 
 
@@ -61,4 +61,4 @@ def put_user(user_id):
         if key not in ['id', 'email', 'created_at', 'updated_at']:
             setattr(user, key, value)
     user.save()
-    return jsonify(user.to_dict())
+    return jsonify(user.to_dict()), 200
