@@ -29,7 +29,7 @@ def delete_user(user_id):
     if user:
         storage.delete(user)
         storage.save()
-        return jsonify({})
+        return jsonify({}), 200
     abort(404)
 
 
