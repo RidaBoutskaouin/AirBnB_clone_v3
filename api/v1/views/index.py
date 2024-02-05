@@ -18,13 +18,13 @@ def status():
 
 
 @app_views.route('/stats', methods=['GET'], strict_slashes=False)
-def stats():
+def number_of_objs():
     stats = {}
     classes = [Amenity, City, Place, Review, State, User]
     names = ["amenities", "cities", "places", "reviews", "states", "users"]
     for i in range(len(classes)):
         cls = classes[i]
         name = names[i]
-        stats[name] = cls.count()
+        stats[name] = cls.count(cls)
 
     return jsonify(stats)
