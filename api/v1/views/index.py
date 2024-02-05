@@ -23,8 +23,6 @@ def number_of_objs():
     classes = [Amenity, City, Place, Review, State, User]
     names = ["amenities", "cities", "places", "reviews", "states", "users"]
     for i in range(len(classes)):
-        cls = classes[i]
-        name = names[i]
-        stats[name] = cls.count(cls)
+        stats[names[i]] = storage.count(classes[i])
 
     return jsonify(stats)
